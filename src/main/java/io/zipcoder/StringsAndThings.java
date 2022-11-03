@@ -1,5 +1,7 @@
 package io.zipcoder;
+import java.util.ArrayList;
 
+import com.sun.xml.internal.ws.util.StringUtils;
 
 /**
  * @author tariq
@@ -15,7 +17,19 @@ public class StringsAndThings {
      *           countYZ("day fyyyz"); // Should return 2
      */
     public Integer countYZ(String input){
-        return null;
+        int count = 0;
+        String[] wordz = input.toLowerCase().split(" ");
+        for (int i = 0; i < wordz.length; i++){
+            String newWordz = wordz[i];
+            boolean yWordz = newWordz.endsWith("y");
+            boolean zWordz = newWordz.endsWith("z");
+            boolean zOrY = zWordz || yWordz;
+            if (zOrY) {
+                count++;
+            }
+        }
+        return count;
+
     }
 
     /**
@@ -28,7 +42,12 @@ public class StringsAndThings {
      *           removeString("Hello there", "x") // Should return "Hello there"
      */
     public String removeString(String base, String remove){
-        return null;
+        return base.replace(remove, "");
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        return super.equals(obj);
     }
 
     /**
@@ -40,7 +59,19 @@ public class StringsAndThings {
      *           containsEqualNumberOfIsAndNot("noisxxnotyynotxisi") // Should return true
      */
     public Boolean containsEqualNumberOfIsAndNot(String input){
-        return null;
+        Integer howManyIs = 0;
+        Integer howManyNot = 0;
+
+        for(int currentChar = 0; currentChar < input.length() -1; currentChar++) {
+            if (input.charAt(currentChar) == 'i' && input.charAt(currentChar + 1) == 's') {
+                howManyIs++;
+            }
+            if (input.charAt(currentChar) == 'n' && input.charAt(currentChar + 1) == 'o' && input.charAt(currentChar + 2) == 't') {
+                howManyNot++;
+            }
+        }
+
+        return howManyIs.equals(howManyNot);
     }
 
     /**
